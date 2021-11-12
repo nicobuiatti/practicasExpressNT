@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { json } = require("express");
 const { validationResult } = require("express-validator");
 const session = require("express-session");
 
@@ -31,5 +32,14 @@ const mainController = {
             res.render("register", { errors: errors.array(), old: req.body });
         }
     },
+    getLogin: (req, res) => {
+        res.render("login");
+    },
+    postLogin: (req, res) => {
+        let users = JSON.parse(
+            fs.readFileSync("../../data/users.json", "utf-8")
+        );
+        console.log(users);
+    },
 };
-(module.exports = mainController), actions;
+module.exports = mainController;

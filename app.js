@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const mainRouter = require("./src/routes/mainRoutes");
+const usersRouter = require("./src/routes/usersRoutes");
 const session = require("express-session");
 
 app.use(express.urlencoded({ extended: true }));
@@ -12,6 +13,8 @@ app.use(session({ secret: "asd" }));
 app.set("view engine", "ejs");
 
 app.use("/", mainRouter);
+
+app.use("/users", usersRouter);
 
 app.listen(PORT, () => console.log(`esta andando en el puerto ${PORT}`));
 
